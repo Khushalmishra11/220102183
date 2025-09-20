@@ -5,11 +5,13 @@ import { handleDemo } from "./routes/demo";
 import { handleShorten } from "./routes/shorten";
 import { handleRedirect } from "./routes/redirect";
 import { handlePreview } from "./routes/preview";
+import { requestLogger } from "./middleware/logger";
 
 export function createServer() {
   const app = express();
 
   // Middleware
+  app.use(requestLogger);
   app.use(cors());
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
